@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidéo de présentation</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f5f7;
+      color: #222;
+      padding: 20px;
+    }
+    .card {
+      width: 100%;
+      max-width: 520px;
+      background: white;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+    }
+    h1 { margin: 0 0 10px; font-size: 25px; }
+    p { color: #666; line-height: 1.5; }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 16px;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 9px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { opacity: .9; }
+    #error {
+      display: none;
+      color: #b00020;
+      margin-top: 12px;
+    }
+    #video {
+      display: none;
+      margin-top: 24px;
+    }
+    iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 10px;
+    }
+    .small { font-size: 13px; color: #888; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section id="login">
+      <h1>🔒 Vidéo de présentation</h1>
+      <p>Veuillez entrer le mot de passe pour accéder à la vidéo.</p>
+
+      <input id="password" type="password" placeholder="Mot de passe" autocomplete="off">
+      <button onclick="checkPassword()">Accéder à la vidéo</button>
+
+      <p id="error">Mot de passe incorrect.</p>
+      <p class="small">Merci de votre attention.</p>
+    </section>
+
+    <section id="video">
+      <h1>Votre vidéo</h1>
+      <iframe
+        src="https://www.youtube.com/embed/V9ug34yu3IM"
+        title="Vidéo de présentation"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </section>
+  </main>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("error");
+
+      if (password === "VOTE") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("video").style.display = "block";
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    document.getElementById("password").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") checkPassword();
+    });
+  </script>
+</body>
+</html>
